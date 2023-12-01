@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "python",
+            "request": "launch",
+            "name": "fastapi",
+            "program": "${workspaceRoot}/src/main.py",
+            "args": [
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceRoot}/src"
+            },
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "name": "tests",
+            "args": [
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceRoot}/src;${workspaceRoot}/tests"
+            },
+        }
+    ]
+}

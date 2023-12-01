@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  api:
+    build: 
+      context: ./apps/backend/
+      dockerfile: ./docker/python.Dockerfile
+    env_file: ./.env
+    entrypoint: sleep 500
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - ./apps/backend/db/init/init.sql:/docker-entrypoint-initdb.d/init.sql

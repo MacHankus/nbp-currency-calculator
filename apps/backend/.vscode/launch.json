@@ -1,16 +1,14 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "python",
             "request": "launch",
             "name": "fastapi",
-            "program": "${workspaceRoot}/src/main.py",
-            "args": [
-            ],
+            "program": "${workspaceRoot}\\src\\main.py",
+            "args": [],
             "env": {
-                "PYTHONPATH": "${workspaceRoot}/src"
+                "PYTHONPATH": "${workspaceRoot}\\src"
             },
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -19,10 +17,15 @@
             "request": "launch",
             "module": "pytest",
             "name": "tests",
+            "justMyCode": false,
             "args": [
+                "-vv",
+                "-x",
+                // "-k test_should_raise_server_unavailable_error"
+                "tests/currency/unit"
             ],
             "env": {
-                "PYTHONPATH": "${workspaceRoot}/src;${workspaceRoot}/tests"
+                "PYTHONPATH": "${workspaceRoot}\\src;${workspaceRoot}\\tests"
             },
         }
     ]

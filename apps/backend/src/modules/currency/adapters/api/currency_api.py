@@ -14,7 +14,7 @@ router = APIRouter()
 
 
 @router.post("/currency/calculate")
-def calculate_currency(
+async def calculate_currency(
     body: Annotated[IncomingCalculateCurrencyDTO, Body(...)]
 ) -> CalculatedValueDTO:
     return CalculatedValueDTO(value=1)

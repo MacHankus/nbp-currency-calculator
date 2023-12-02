@@ -17,11 +17,11 @@ class HTTPExchangeRateRepository(ExchangeRateRepositoryPort):
     HEADERS= {
         "Accept": "application/json"
     }
-    async def get_exchange_rate(self, currency: CurrencyEnum) -> Decimal:
-        async with httpx.AsyncClient(headers=self.HEADERS) as client:
+    def get_exchange_rate(self, currency: CurrencyEnum) -> Decimal:
+        with httpx.Client(headers=self.HEADERS) as client:
             prepared_path = self.API_BASE_PATH.format(currency=currency.value)
             try:
-                response = await client.get(prepared_path)
+                response = client.get(prepared_path)
                 response.raise_for_status()
             except httpx.RequestError:
                 raise ServerUnavailableError()

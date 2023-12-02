@@ -6,8 +6,10 @@ from sqlalchemy.orm import Session
 
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
-from tests.helpers.db_requests_history import get_requests_history, truncate_requests_history
+from tests.helpers.db_requests_history import get_requests_history
+from tests.helpers.db_requests_history import truncate_requests_history
 from tests.helpers.random import get_random_decimal
+
 
 @pytest.fixture(autouse=True)
 def fixture_truncate_request_history(requests_history_session: Session):

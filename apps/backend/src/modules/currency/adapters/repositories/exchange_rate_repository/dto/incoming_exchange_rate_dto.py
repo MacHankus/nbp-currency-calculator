@@ -1,5 +1,5 @@
-from datetime import datetime
 from decimal import Decimal
+from typing import List
 
 from pydantic import BaseModel
 
@@ -9,7 +9,7 @@ from shared.models.camel_model import CamelModel
 
 class RatesDTO(CamelModel):
     no: str
-    effective_date: datetime
+    effective_date: str
     mid: Decimal
 
 
@@ -17,4 +17,4 @@ class IncomingExchangeRateDTO(BaseModel):
     table: str
     currency: str
     code: str
-    rates: RatesDTO
+    rates: List[RatesDTO]

@@ -19,5 +19,5 @@ class RequestHistory(Base):
     currency_from:Mapped[str] = mapped_column(String, nullable=False)
     currency_to:Mapped[str] = mapped_column(String, nullable=False)
     request_date: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    is_error: Mapped[bool] = mapped_column(Boolean)
-    exchange_rate: Mapped[Decimal] = mapped_column(DECIMAL)
+    is_error: Mapped[bool] = mapped_column(Boolean, nullable=True)
+    exchange_rate: Mapped[Decimal] = mapped_column(DECIMAL, nullable=True)

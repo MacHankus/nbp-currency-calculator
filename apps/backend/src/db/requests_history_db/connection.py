@@ -1,27 +1,22 @@
-from asyncio import current_task
-from typing import AsyncGenerator
+from typing import Generator
 
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.ext.asyncio import async_scoped_session
-from sqlalchemy.ext.asyncio import async_sessionmaker
-from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
 
 from settings import settings
 
-CONNECTION_STRING = f"postgresql+asyncpg://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
+CONNECTION_STRING = f"postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
 
-engine = create_async_engine(
+engine = create_engine(
     CONNECTION_STRING,
     echo=True,
     future=True,
 )
 
-sessionmaker = async_sessionmaker(bind=engine)
-
-scoped_session = async_scoped_session(session_factory=sessionmaker, scopefunc=current_task)
+session_factory = sessionmaker(engine)
 
 
-async def get_scoped_session() -> AsyncGenerator[AsyncSession, None]:
-    async with scoped_session() as session:
+def get_session() -> Generator[Session, None, None]:
+    with session_factory() as session:
         yield session
-        await scoped_session.remove()

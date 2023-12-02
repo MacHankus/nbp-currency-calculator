@@ -1,7 +1,6 @@
 import pytest
 
 from shared.exceptions.server_failed_request_error import ServerFailedRequestError
-
 from tests.helpers.random import get_random_string
 
 

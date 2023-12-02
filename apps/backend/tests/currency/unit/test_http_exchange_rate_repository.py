@@ -1,20 +1,19 @@
-from datetime import datetime
 import re
-from typing import Any, Dict
+from datetime import datetime
+from typing import Any
+from typing import Dict
+
 import pytest
 from pytest_httpx import HTTPXMock
-from modules.currency.adapters.repositories.exchange_rate_repository.dto.incoming_exchange_rate_dto import (
-    IncomingExchangeRateDTO,
-    RatesDTO,
-)
 
-from modules.currency.adapters.repositories.exchange_rate_repository.http_exchange_rate_repository import (
-    HTTPExchangeRateRepository,
-)
+from modules.currency.adapters.repositories.exchange_rate_repository.dto.incoming_exchange_rate_dto import \
+    IncomingExchangeRateDTO
+from modules.currency.adapters.repositories.exchange_rate_repository.dto.incoming_exchange_rate_dto import RatesDTO
+from modules.currency.adapters.repositories.exchange_rate_repository.http_exchange_rate_repository import \
+    HTTPExchangeRateRepository
 from modules.currency.core.enums.currency_enum import CurrencyEnum
-from tests.helpers.random import get_random_decimal, get_random_string
-
-import pytest
+from tests.helpers.random import get_random_decimal
+from tests.helpers.random import get_random_string
 
 EXCHANGE_RATE_PATH_REGEXP = "https://api.nbp.pl/api/exchangerates/rates/a/.*"
 

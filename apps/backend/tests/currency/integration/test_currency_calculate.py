@@ -1,15 +1,12 @@
+import itertools
 from decimal import Decimal
 
 import pytest
-from modules.currency.adapters.api.dto.incoming.calculate_currency_dto import (
-    IncomingCalculateCurrencyDTO,
-)
-from modules.currency.adapters.api.dto.outcoming.calculated_value_dto import (
-    CalculatedValueDTO,
-)
+
+from modules.currency.adapters.api.dto.incoming.calculate_currency_dto import IncomingCalculateCurrencyDTO
+from modules.currency.adapters.api.dto.outcoming.calculated_value_dto import CalculatedValueDTO
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from tests.testclient import client
-import itertools
 
 PATH = "/currency/calculate"
 

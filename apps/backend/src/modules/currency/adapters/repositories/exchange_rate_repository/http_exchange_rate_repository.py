@@ -1,15 +1,15 @@
 
-import httpx
-
 from decimal import Decimal
 
+import httpx
 from pydantic import ValidationError
-from modules.currency.adapters.repositories.exchange_rate_repository.dto.incoming_exchange_rate_dto import IncomingExchangeRateDTO
+
+from modules.currency.adapters.repositories.exchange_rate_repository.dto.incoming_exchange_rate_dto import \
+    IncomingExchangeRateDTO
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from modules.currency.core.ports.exchange_rate_repository_port import ExchangeRateRepositoryPort
 from shared.exceptions.server_failed_request_error import ServerFailedRequestError
 from shared.exceptions.server_unavailable_error import ServerUnavailableError
-
 
 
 class HTTPExchangeRateRepository(ExchangeRateRepositoryPort):

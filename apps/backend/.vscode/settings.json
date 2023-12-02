@@ -2,7 +2,7 @@
     "python.formatting.provider": "black",
     "python.terminal.activateEnvironment": true,
     "terminal.integrated.env.osx": {
-        "PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests"
+        "PYTHONPATH": "${workspaceFolder}\\src;${workspaceFolder}\\tests"
     },
     "python.testing.pytestArgs": [
         "tests"

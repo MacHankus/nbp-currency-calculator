@@ -1,27 +1,24 @@
+import itertools
 from decimal import Decimal
 
 import pytest
-from modules.currency.adapters.api.dto.incoming.calculate_currency_dto import (
-    IncomingCalculateCurrencyDTO,
-)
-from modules.currency.adapters.api.dto.outcoming.calculated_value_dto import (
-    CalculatedValueDTO,
-)
+
+from modules.currency.adapters.api.dto.incoming.calculate_currency_dto import IncomingCalculateCurrencyDTO
+from modules.currency.adapters.api.dto.outcoming.calculated_value_dto import CalculatedValueDTO
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from tests.testclient import client
-import itertools
 
-CURRENCY_CALCULATE_PATH = "/currency/calculate"
+PATH = "/currency/calculate"
 
 
 def test_response_should_return_200_when_provided_all_good_params():
     # Arrange
     payload = IncomingCalculateCurrencyDTO(
-        currency_from="PLN", currency_to="USD", value=Decimal("1.1")
+        currency_from=CurrencyEnum.PLN, currency_to=CurrencyEnum.PLN, value=Decimal("1.1")
     )
 
     # Act
-    response = client.post(CURRENCY_CALCULATE_PATH, json=payload.model_dump_json())
+    response = client.post(PATH, content=payload.model_dump_json())
 
     # Assert
     assert response.status_code == 200
@@ -40,7 +37,7 @@ def test_response_should_return_value_when_provided_all_good_params(
         value=Decimal("1.1"),
     )
     # Act
-    response = client.post(CURRENCY_CALCULATE_PATH, json=payload.model_dump_json())
+    response = client.post(PATH, content=payload.model_dump_json())
 
     response_model = CalculatedValueDTO.model_validate_json(response.read())
 

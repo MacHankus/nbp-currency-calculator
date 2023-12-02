@@ -1,3 +1,4 @@
+from typing import Any, Coroutine
 from dependency_injector.wiring import Provide
 from dependency_injector.wiring import inject
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -26,3 +27,5 @@ class DBRequestsHistoryRepository(RequestsHistoryRepositoryPort):
         async with self.db_session:
             self.db_session.add(new_request_history_row)
             await self.db_session.commit()
+
+        return None

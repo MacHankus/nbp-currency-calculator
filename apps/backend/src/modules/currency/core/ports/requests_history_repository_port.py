@@ -1,6 +1,5 @@
 from abc import ABC
 from abc import abstractmethod
-from typing import Any, Coroutine
 
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 

@@ -29,8 +29,8 @@ class HTTPExchangeRateRepository(ExchangeRateRepositoryPort):
                 raise ServerFailedRequestError()
             
             try:
-                response_model = IncomingExchangeRateDTO.model_validate_json(response.json())
+                response_model = IncomingExchangeRateDTO.model_validate(response.json())
             except ValidationError:
                 raise ServerFailedRequestError("Response cannot be validated")
 
-            return response_model.rates.mid 
+            return response_model.rates[0].mid

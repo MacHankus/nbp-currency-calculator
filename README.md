@@ -9,3 +9,4 @@ From root folder run
 docker-compose -f docker-compose.dev.yaml up
 ```
 
+Then in the browser go to http://localhost:9000/docs to explore backend api.

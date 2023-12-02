@@ -7,7 +7,7 @@ COPY ./src src
 COPY ./pyproject.toml pyproject.toml 
 COPY ./poetry.lock poetry.lock
 
-RUN poetry config virtualenvs.create false && poetry install
+RUN poetry config virtualenvs.create false && poetry install --only main
 
 RUN poetry run pip freeze
 

@@ -22,8 +22,9 @@
                 "-vv",
                 "-x",
                 // "-k test_should_raise_server_unavailable_error"
-                "tests/currency/unit"
+                "tests/currency/unit/test_exchange_service.py"
             ],
+            "envFile": "${workspaceFolder}/dev.env",
             "env": {
                 "PYTHONPATH": "${workspaceRoot}\\src;${workspaceRoot}\\tests"
             },

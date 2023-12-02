@@ -1,11 +1,10 @@
 from decimal import Decimal
 
-from pydantic import BaseModel
-
 from modules.currency.core.enums.currency_enum import CurrencyEnum
+from shared.models.camel_model import CamelModel
 
 
-class IncomingCalculateCurrencyDTO(BaseModel):
+class IncomingCalculateCurrencyDTO(CamelModel):
     currency_from: CurrencyEnum 
     currency_to: CurrencyEnum
     value: Decimal

@@ -1,3 +1,4 @@
+from typing import Generator
 import pytest
 from sqlalchemy.orm import Session
 
@@ -11,6 +12,5 @@ def container():
     yield container
 
 @pytest.fixture
-async def requests_history_session() -> Session:
-    with get_session() as session:
-        yield session
+def requests_history_session() -> Generator[Session, None, None]:
+    yield from get_session()

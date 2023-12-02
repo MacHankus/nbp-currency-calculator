@@ -10,3 +10,4 @@ docker-compose -f docker-compose.dev.yaml up
 ```
 
 Then in the browser go to http://localhost:9000/docs to explore backend api.
+DB will be available by host=localhost, port=9001, dbname=currency, username=postgres, password=postgres.

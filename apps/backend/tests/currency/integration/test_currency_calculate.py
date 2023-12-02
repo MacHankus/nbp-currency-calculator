@@ -14,11 +14,11 @@ PATH = "/currency/calculate"
 def test_response_should_return_200_when_provided_all_good_params():
     # Arrange
     payload = IncomingCalculateCurrencyDTO(
-        currency_from="PLN", currency_to="USD", value=Decimal("1.1")
+        currency_from=CurrencyEnum.PLN, currency_to=CurrencyEnum.PLN, value=Decimal("1.1")
     )
 
     # Act
-    response = client.post(PATH, json=payload.model_dump_json())
+    response = client.post(PATH, content=payload.model_dump_json())
 
     # Assert
     assert response.status_code == 200
@@ -37,7 +37,7 @@ def test_response_should_return_value_when_provided_all_good_params(
         value=Decimal("1.1"),
     )
     # Act
-    response = client.post(PATH, json=payload.model_dump_json())
+    response = client.post(PATH, content=payload.model_dump_json())
 
     response_model = CalculatedValueDTO.model_validate_json(response.read())
 

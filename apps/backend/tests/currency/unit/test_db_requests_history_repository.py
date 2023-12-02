@@ -1,28 +1,15 @@
-import re
 from datetime import datetime
-from decimal import Decimal
-from typing import Any
-from typing import Dict
 from unittest.mock import AsyncMock
 from unittest.mock import Mock
 
-import pytest
-from pytest_httpx import HTTPXMock
-
-from modules.currency.adapters.repositories.exchange_rate_repository.dto.incoming_exchange_rate_dto import \
-    IncomingExchangeRateDTO
-from modules.currency.adapters.repositories.exchange_rate_repository.dto.incoming_exchange_rate_dto import RatesDTO
-from modules.currency.adapters.repositories.exchange_rate_repository.http_exchange_rate_repository import \
-    HTTPExchangeRateRepository
 from modules.currency.adapters.repositories.requests_history_repository.db_requests_history_repository import \
     DBRequestsHistoryRepository
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from tests.helpers.random import get_random_decimal
-from tests.helpers.random import get_random_string
 
 
-async def test_should_accept_argument():
+def test_should_accept_argument():
     # Arrange 
     mock_session = Mock()
     repository = DBRequestsHistoryRepository(db_session=mock_session)
@@ -36,10 +23,10 @@ async def test_should_accept_argument():
     )
     
     # Act
-    await repository.add(new_request)
+    repository.add(new_request)
 
 
-async def test_should_call_session():
+def test_should_call_session():
     # Arrange 
     mock_session = AsyncMock()
     mock_session_add = AsyncMock()
@@ -56,7 +43,7 @@ async def test_should_call_session():
     )
     
     # Act
-    await repository.add(new_request)
+    repository.add(new_request)
 
     # Assert
     assert mock_session_add.assert_called_once()

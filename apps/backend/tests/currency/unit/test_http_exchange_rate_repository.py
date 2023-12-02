@@ -28,8 +28,7 @@ def mock_exchange_rate_http_request(
 
 
 @pytest.mark.parametrize("currency_enum", list(CurrencyEnum))
-@pytest.mark.asyncio
-async def test_should_get_exchange_rate_when_good_params_provided(
+def test_should_get_exchange_rate_when_good_params_provided(
     httpx_mock: HTTPXMock, currency_enum: CurrencyEnum
 ):
     # Arrange
@@ -50,7 +49,7 @@ async def test_should_get_exchange_rate_when_good_params_provided(
     )
 
     # Act
-    result = await repository.get_exchange_rate(currency_enum)
+    result = repository.get_exchange_rate(currency_enum)
 
     # Assert
 

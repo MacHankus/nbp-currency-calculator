@@ -1,4 +1,3 @@
-from typing import Any, Coroutine
 from dependency_injector.wiring import Provide
 from dependency_injector.wiring import inject
 from sqlalchemy.ext.asyncio import AsyncSession

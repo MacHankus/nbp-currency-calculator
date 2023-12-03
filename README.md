@@ -8,8 +8,17 @@ From root folder run
 ```
 docker-compose -f docker-compose.dev.yaml up
 ```
+After containers are started you can explore docs made for API.
+DB Migration is called before API starts.
+Then in the browser go to http://localhost:9000/docs to explore backend API. 
+There is one endpoint that calculates value of target currency depending on given curerncy and its amount.
+More details under the docs and `schema` section.
+Each request is persisted in DB inside public.request_history table.
 
-Then in the browser go to http://localhost:9000/docs to explore backend api.
 DB will be available by host=localhost, port=9001, dbname=currency, username=postgres, password=postgres.
 
-** WORK IN PROGRESS **
+
+Fronted :
+**WORK IN PROGRESS**
+Code for frontend is inside repository, container is still not working. 
+Fronted is able to show basic form but not working yet.

@@ -5,10 +5,10 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from db.requests_history_db.models import *
+from db.requests_history.models import *
 
-from db.requests_history_db.models.base import Base
-from db.requests_history_db.connection import CONNECTION_STRING
+from db.requests_history.models.base import Base
+from db.requests_history.connection import CONNECTION_STRING
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

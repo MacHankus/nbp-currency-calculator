@@ -33,19 +33,19 @@ def test_should_get_exchange_rate_when_good_params_provided(
 ):
     # Arrange
     repository = HTTPExchangeRateRepository()
-    exchange_rate = get_random_decimal()
+    exchange_rate = float(get_random_decimal())
     payload = IncomingExchangeRateDTO(
         table=get_random_string(),
         currency=get_random_string(),
         code=get_random_string(),
-        rates=RatesDTO(
-            effective_date=datetime.now(),
+        rates=[RatesDTO(
+            effective_date=datetime.now().isoformat(),
             no=get_random_string(),
             mid=exchange_rate,
-        ),
+        )],
     )
     mock_exchange_rate_http_request(
-        httpx_mock=httpx_mock, json=payload.model_dump_json()
+        httpx_mock=httpx_mock, json=payload.model_dump()
     )
 
     # Act

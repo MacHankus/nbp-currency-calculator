@@ -2,7 +2,7 @@ from dependency_injector.wiring import Provide
 from dependency_injector.wiring import inject
 from sqlalchemy.orm import Session
 
-from db.requests_history_db.models.request_history import RequestHistory
+from db.requests_history.models.request_history import RequestHistory
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.ports.requests_history_repository_port import RequestsHistoryRepositoryPort
 

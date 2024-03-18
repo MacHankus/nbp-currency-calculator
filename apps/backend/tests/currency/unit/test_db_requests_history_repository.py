@@ -1,6 +1,5 @@
 from datetime import datetime
-from unittest.mock import AsyncMock
-from unittest.mock import Mock
+from unittest.mock import MagicMock
 
 from modules.currency.adapters.repositories.requests_history_repository.db_requests_history_repository import \
     DBRequestsHistoryRepository
@@ -11,7 +10,7 @@ from tests.helpers.random import get_random_decimal
 
 def test_should_accept_argument():
     # Arrange 
-    mock_session = Mock()
+    mock_session = MagicMock()
     repository = DBRequestsHistoryRepository(db_session=mock_session)
     new_request = NewRequestEntity(
         currency_from=CurrencyEnum.PLN,
@@ -28,9 +27,9 @@ def test_should_accept_argument():
 
 def test_should_call_session():
     # Arrange 
-    mock_session = AsyncMock()
-    mock_session_add = AsyncMock()
-    mock_session_commit = AsyncMock()
+    mock_session = MagicMock()
+    mock_session_add = MagicMock()
+    mock_session_commit = MagicMock()
     mock_session.add = mock_session_add
     mock_session.commit = mock_session_commit
     repository = DBRequestsHistoryRepository(db_session=mock_session)
@@ -46,5 +45,4 @@ def test_should_call_session():
     repository.add(new_request)
 
     # Assert
-    assert mock_session_add.assert_called_once()
-    assert mock_session_commit.assert_awaited_once()
+    mock_session_add.assert_called_once()

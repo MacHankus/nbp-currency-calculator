@@ -1,5 +1,4 @@
 
-from decimal import Decimal
 
 import httpx
 from pydantic import ValidationError
@@ -17,7 +16,7 @@ class HTTPExchangeRateRepository(ExchangeRateRepositoryPort):
     HEADERS= {
         "Accept": "application/json"
     }
-    def get_exchange_rate(self, currency: CurrencyEnum) -> Decimal:
+    def get_exchange_rate(self, currency: CurrencyEnum) -> float:
         with httpx.Client(headers=self.HEADERS) as client:
             prepared_path = self.API_BASE_PATH.format(currency=currency.value)
             try:
@@ -29,7 +28,7 @@ class HTTPExchangeRateRepository(ExchangeRateRepositoryPort):
                 raise ServerFailedRequestError()
             
             try:
-                response_model = IncomingExchangeRateDTO.model_validate(response.json())
+                response_model = IncomingExchangeRateDTO.model_validate_json(response.read())
             except ValidationError:
                 raise ServerFailedRequestError("Response cannot be validated")
 

@@ -2,7 +2,7 @@ from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 from dependency_injector.containers import WiringConfiguration
 
-from db.requests_history_db.connection import get_session
+from db.requests_history.connection import get_session
 from modules.currency.adapters.repositories.exchange_rate_repository.http_exchange_rate_repository import \
     HTTPExchangeRateRepository
 from modules.currency.adapters.repositories.requests_history_repository.db_requests_history_repository import \

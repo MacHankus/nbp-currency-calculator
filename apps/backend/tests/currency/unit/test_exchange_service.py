@@ -1,4 +1,3 @@
-from decimal import Decimal
 from unittest.mock import Mock
 
 from dependency_injector import providers
@@ -14,8 +13,8 @@ def test_should_get_proper_rate(container: DeclarativeContainer):
     mock_requests_history_repository = Mock()
     mock_exchange_rate_repository = Mock()
     mock_exchange_rate_repository__get_exchange_rate = Mock()
-    usd_to_pln = Decimal("3.97")
-    eur_to_pln = Decimal("5.05")
+    usd_to_pln = 3.97
+    eur_to_pln = 5.05
     final_eur = (2 * usd_to_pln) / eur_to_pln
     mock_exchange_rate_repository__get_exchange_rate.side_effect = [
         usd_to_pln,

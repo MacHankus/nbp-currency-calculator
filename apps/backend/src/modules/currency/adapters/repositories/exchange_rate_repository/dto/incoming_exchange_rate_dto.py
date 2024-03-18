@@ -1,4 +1,3 @@
-from decimal import Decimal
 from typing import List
 
 from pydantic import BaseModel
@@ -10,7 +9,7 @@ from shared.models.camel_model import CamelModel
 class RatesDTO(CamelModel):
     no: str
     effective_date: str
-    mid: Decimal
+    mid: float
 
 
 class IncomingExchangeRateDTO(BaseModel):

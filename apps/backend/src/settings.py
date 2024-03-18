@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     PROJECT_HOST: str = "localhost"
     PROJECT_PORT: int = 9000
 
-    BACKEND_CORS_ORIGINS: List[str] = []
+    BACKEND_CORS_ORIGINS: List[str] = ["http://localhost:8081", "http://localhost:9003"]
     DB_HOST: str
     DB_PORT: str
     DB_NAME: str

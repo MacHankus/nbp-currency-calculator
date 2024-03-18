@@ -11,6 +11,11 @@ from tests.helpers.db_requests_history import truncate_requests_history
 from tests.helpers.random import get_random_decimal
 
 
+@pytest.fixture(autouse=True, scope="module")
+def fixture_truncate_request_history_at_start(requests_history_session: Session):
+    truncate_requests_history(session=requests_history_session)
+
+
 @pytest.fixture(autouse=True)
 def fixture_truncate_request_history(requests_history_session: Session):
     yield
@@ -41,7 +46,7 @@ def test_should_add_row_to_request_history_table(
     request = requests_history[0]
 
     assert request.currency_from == new_request_entity.currency_from
-    assert request.currency_to== new_request_entity.currency_to
-    assert request.request_date== new_request_entity.request_date
-    assert request.exchange_rate== new_request_entity.exchange_rate
-    assert request.is_error== new_request_entity.is_error
+    assert request.currency_to == new_request_entity.currency_to
+    assert request.request_date == new_request_entity.request_date
+    assert request.exchange_rate == new_request_entity.exchange_rate
+    assert request.is_error == new_request_entity.is_error

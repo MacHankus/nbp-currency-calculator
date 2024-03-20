@@ -18,6 +18,7 @@ jobs:
       - name: Install packages
         run: |
           cd apps/${{ inputs.APP_NAME }} && \
+          ls -l && \
           pip install poetry && \
           poetry install
       - name: Lint

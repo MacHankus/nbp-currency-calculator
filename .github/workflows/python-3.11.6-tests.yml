@@ -18,6 +18,7 @@ jobs:
           python-version: '3.11.6' 
       - name: Prepare environment for linting
         run: |
+          cd apps/${{ inputs.APP_NAME }} && \
           pip install poetry && \
           poetry install && \
           export PYTHONPATH=${PYTHONPATH}:$(pwd)/src:$(pwd)/tests && \

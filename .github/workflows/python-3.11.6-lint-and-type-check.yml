@@ -16,14 +16,16 @@ jobs:
         with:
           python-version: '3.11.6' 
       - name: Install packages
-        run: |
-          cd apps/${{ inputs.APP_NAME }} && \
-          pip install poetry && \
+        run: >
+          cd apps/${{ inputs.APP_NAME }} &&
+          pip install poetry &&
           poetry install
       - name: Lint
-        run: |
+        run: >
+          cd apps/${{ inputs.APP_NAME }} &&
           poetry run ruff check src tests
       - name: Type check
-        run: |
+        run: >
+          cd apps/${{ inputs.APP_NAME }} &&
           poetry run mypy src tests
 

@@ -10,7 +10,7 @@ on:
       - .github/workflows/backend*
 jobs:
   backend-lint-and-type-check:
-    uses: ./.github/workflows/python-3.11.6-lint-type-check.yml
+    uses: ./.github/workflows/python-3.11.6-lint-and-type-check.yml
   backend-tests:
     uses: ./.github/workflows/python-3.11.6-tests.yml
     needs: backend-lint-and-type-check

@@ -2,6 +2,11 @@ name: Reusable python type check
 
 on:
   workflow_call:
+    inputs:
+      APP_NAME:
+        required: true
+        type: string
+
 
 jobs:
   python-tests:

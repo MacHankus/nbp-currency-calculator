@@ -2,6 +2,10 @@ name: Reusable python linting and type check
 
 on:
   workflow_call:
+    inputs:
+      APP_NAME:
+        required: true
+        type: string
 
 jobs:
   python-type-check:
@@ -13,6 +17,7 @@ jobs:
           python-version: '3.11.6' 
       - name: Install packages
         run: |
+          cd apps/${{ inputs.APP_NAME }} && \
           pip install poetry && \
           poetry install
       - name: Lint

@@ -6,11 +6,11 @@ on:
   push:
     paths:
       - apps/backend/**
-      - .github/workflows/reusable/python*
-      - .github/workflows/reusable/backend*
+      - .github/workflows/python*
+      - .github/workflows/backend*
 jobs:
   backend-lint-and-type-check:
-    uses: ./.github/workflows/reusable/python-3.11.6-lint-type-check.yml
+    uses: ./.github/workflows/python-3.11.6-lint-type-check.yml
   backend-tests:
-    uses: ./.github/workflows/reusable/python-3.11.6-tests.yml
+    uses: ./.github/workflows/python-3.11.6-tests.yml
     needs: backend-lint-and-type-check

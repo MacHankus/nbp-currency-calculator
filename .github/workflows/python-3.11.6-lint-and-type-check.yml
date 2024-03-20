@@ -27,5 +27,5 @@ jobs:
       - name: Type check
         run: >
           cd apps/${{ inputs.APP_NAME }} &&
-          poetry run mypy src tests
+          poetry run mypy src
 

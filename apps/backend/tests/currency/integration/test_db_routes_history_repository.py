@@ -8,7 +8,7 @@ from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from tests.helpers.db_requests_history import get_requests_history
 from tests.helpers.db_requests_history import truncate_requests_history
-from tests.helpers.random import get_random_decimal
+from tests.helpers.random import get_random_float
 
 
 @pytest.fixture(autouse=True, scope="module")
@@ -32,7 +32,7 @@ def test_should_add_row_to_request_history_table(
         currency_from=CurrencyEnum.PLN,
         currency_to=CurrencyEnum.PLN,
         request_date=datetime.now(),
-        exchange_rate=get_random_decimal(),
+        exchange_rate=get_random_float(),
         is_error=False,
     )
     # Act

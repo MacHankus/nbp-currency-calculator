@@ -12,7 +12,7 @@ from modules.currency.adapters.repositories.exchange_rate_repository.dto.incomin
 from modules.currency.adapters.repositories.exchange_rate_repository.http_exchange_rate_repository import \
     HTTPExchangeRateRepository
 from modules.currency.core.enums.currency_enum import CurrencyEnum
-from tests.helpers.random import get_random_decimal
+from tests.helpers.random import get_random_float
 from tests.helpers.random import get_random_string
 
 EXCHANGE_RATE_PATH_REGEXP = "https://api.nbp.pl/api/exchangerates/rates/a/.*"
@@ -33,7 +33,7 @@ def test_should_get_exchange_rate_when_good_params_provided(
 ):
     # Arrange
     repository = HTTPExchangeRateRepository()
-    exchange_rate = float(get_random_decimal())
+    exchange_rate = float(get_random_float())
     payload = IncomingExchangeRateDTO(
         table=get_random_string(),
         currency=get_random_string(),

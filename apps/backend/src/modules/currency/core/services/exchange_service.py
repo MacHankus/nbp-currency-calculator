@@ -1,5 +1,4 @@
 from datetime import datetime
-from decimal import Decimal
 
 from dependency_injector.wiring import Provide
 
@@ -26,7 +25,7 @@ class ExchangeService(ExchangePort):
         self.requests_history_repository = requests_history_repository
         self.exchange_rate_repository = exchange_rate_repository
 
-    def get_exchange(self, currency_to_calculate: CurrencyToCalculateEntity) -> Decimal:
+    def get_exchange(self, currency_to_calculate: CurrencyToCalculateEntity) -> float:
         request_data = dict(
             currency_from=currency_to_calculate.currency_from,
             currency_to=currency_to_calculate.currency_to,

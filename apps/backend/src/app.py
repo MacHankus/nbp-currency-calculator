@@ -6,10 +6,13 @@ from modules.currency.adapters.api.currency_api import router
 from settings import settings
 
 
-def create_app() -> FastAPI:
+class FastApiExtended(FastAPI):
+    container: Container
+
+def create_app() -> FastApiExtended:
     container = Container()
 
-    app = FastAPI(title=settings.PROJECT_NAME)
+    app = FastApiExtended(title=settings.PROJECT_NAME)
 
     # Set all CORS enabled origins
     if settings.BACKEND_CORS_ORIGINS:

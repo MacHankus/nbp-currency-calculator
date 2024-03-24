@@ -1,0 +1,20 @@
+name: Backend workflow
+
+on:
+  pull_request:
+    branches: [ "master" ]
+  push:
+    paths:
+      - apps/backend/**
+      - .github/workflows/python*
+      - .github/workflows/backend*
+jobs:
+  backend-lint-and-type-check:
+    uses: ./.github/workflows/python-3.11.6-lint-and-type-check.yml
+    with: 
+      APP_NAME: backend
+  backend-tests:
+    uses: ./.github/workflows/python-3.11.6-tests.yml
+    with: 
+      APP_NAME: backend
+    needs: backend-lint-and-type-check

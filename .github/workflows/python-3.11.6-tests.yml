@@ -32,7 +32,7 @@ jobs:
         with:
           python-version: "3.11.6"
       - name: Install psql
-        run: apt-get install -y postgresql-client
+        run: sudo apt-get install -y postgresql-client
       - name: Create database
         run: |
           psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "postgres" <<-EOSQL \

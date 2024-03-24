@@ -38,6 +38,6 @@ jobs:
           pip install poetry &&
           poetry install &&
           export PYTHONPATH=${PYTHONPATH}:$(pwd)/src:$(pwd)/tests &&
-          alembic upgrade head &&
+          poetry run alembic upgrade head &&
           poetry run pytest tests -vv tests
 

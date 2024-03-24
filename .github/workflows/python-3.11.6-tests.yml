@@ -37,6 +37,7 @@ jobs:
           cd apps/${{ inputs.APP_NAME }} &&
           pip install poetry &&
           poetry install &&
+          alembic upgrade head &&
           export PYTHONPATH=${PYTHONPATH}:$(pwd)/src:$(pwd)/tests &&
           poetry run pytest tests -vv tests
 

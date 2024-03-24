@@ -34,7 +34,7 @@ jobs:
       - name: Install psql
         run: sudo apt-get install -y postgresql-client
       - name: Create database
-        run: export PGPASSWORD='password' && psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "postgres" -h localhost -c "CREATE DATABASE currency;"
+        run: export PGPASSWORD='postgres' && psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "postgres" -h localhost -c "CREATE DATABASE currency;"
       - name: Prepare environment for testing
         run: >
           cd apps/${{ inputs.APP_NAME }} &&

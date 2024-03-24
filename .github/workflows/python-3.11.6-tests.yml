@@ -31,6 +31,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11.6"
+      - name: Install psql
+        run: apt-get install -y postgresql-client
+      - name: Create database
+        run: |
+        psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "postgres" <<-EOSQL \
+          CREATE DATABASE currency; \
+        EOSQL
       - name: Prepare environment for testing
         run: >
           cd apps/${{ inputs.APP_NAME }} &&

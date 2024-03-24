@@ -43,4 +43,7 @@ jobs:
           export PYTHONPATH=${PYTHONPATH}:$(pwd)/src:$(pwd)/tests &&
           poetry run alembic upgrade head
       - name: Run tests
-        run: export PYTHONPATH=${PYTHONPATH}:$(pwd)/src:$(pwd)/tests && poetry run pytest tests -vv tests
+        run: >
+          cd apps/${{ inputs.APP_NAME }} &&
+          export PYTHONPATH=${PYTHONPATH}:$(pwd)/src:$(pwd)/tests && 
+          poetry run pytest tests -vv tests

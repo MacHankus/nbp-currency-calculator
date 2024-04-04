@@ -1,11 +1,11 @@
-FROM node:21-alpine3.17
+FROM node:21-alpine3.17 as builder
 
 WORKDIR /app
  
 COPY . .
 
 RUN npm install --force
- 
+RUN npx webpack --env mode=production
 
 # Run the application.
-CMD ["npm","start"]
+ENTRYPOINT ["node","--env-file",".env", "server.cjs"]

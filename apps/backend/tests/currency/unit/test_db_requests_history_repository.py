@@ -5,7 +5,7 @@ from modules.currency.adapters.repositories.requests_history_repository.db_reque
     DBRequestsHistoryRepository
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
-from tests.helpers.random import get_random_decimal
+from tests.helpers.random import get_random_float
 
 
 def test_should_accept_argument():
@@ -16,7 +16,7 @@ def test_should_accept_argument():
         currency_from=CurrencyEnum.PLN,
         currency_to=CurrencyEnum.PLN,
         request_date=datetime.now(),
-        exchange_rate=get_random_decimal(),
+        exchange_rate=get_random_float(),
         is_error=False
 
     )
@@ -37,7 +37,7 @@ def test_should_call_session():
         currency_from=CurrencyEnum.PLN,
         currency_to=CurrencyEnum.PLN,
         request_date=datetime.now(),
-        exchange_rate=get_random_decimal(),
+        exchange_rate=get_random_float(),
         is_error=False
     )
     

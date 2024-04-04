@@ -1,88 +1,80 @@
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const dotenv = require("dotenv");
-var fs = require("fs");
+import { resolve as _resolve, join } from 'path'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { config } from 'dotenv'
+import { statSync } from 'fs'
 
-function fileExists(filePath) {
+import webpack from 'webpack'
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+function fileExists (filePath) {
   try {
-    return fs.statSync(filePath).isFile();
+    return statSync(filePath).isFile()
   } catch (err) {
-    return false;
+    return false
   }
 }
 
-
-function setUp(mode) {
-  console.log(`Available modes are: ['development', 'production']`)
-  console.log(`App is building in ${mode}`)
-  if (mode === "development" || mode === "develop" || mode === "dev") {
-    let devPath = path.resolve(process.cwd(), "develop.env");
-    if (fileExists(devPath)) {
-      dotenv.config((options = { path: devPath }));
-    } else {
-      throw Error(`develop.env not exists. Place file in path (${devPath})`);
-    }
-  } else if (mode === "production" || mode === "prod") {
-    let prodPath = path.resolve(process.cwd(), ".env");
-    if (fileExists(prodPath)) {
-      dotenv.config((options = { path: prodPath }));
-    } else {
-      throw Error(`.env not exists. Place file in path (${devPath})`);
-    }
-  }else{
-    throw Error(`Mode (${mode}) is unknown.`)
+function setUp () {
+  const devPath = _resolve(process.cwd(), '.env')
+  if (fileExists(devPath)) {
+    config(({ path: devPath }))
+  } else {
+    throw Error(`.env not exists. Place file in path (${devPath})`)
   }
 }
 
-module.exports = (env) => {
-  // Remember to  use --env mode=.* while building
-  setUp(env.mode);
+export default (env) => {
+  setUp()
 
   // return statement
   return {
-    mode: "development",
-    devtool:"source-map",
-    entry: "./main.tsx",
+    mode: 'development',
+    devtool: 'source-map',
+    entry: './main.tsx',
     output: {
-      path: path.join(__dirname, "/dist"),
-      filename: "bundle.[hash].js"
+      path: join(__dirname, '/dist'),
+      filename: 'bundle.[hash].js'
     },
     devServer: {
-      static: path.resolve(__dirname, './dist')
+      static: _resolve(__dirname, './dist')
     },
     module: {
       rules: [
         {
           test: [/\.tsx?$/, /\.ts?$/],
           exclude: /node_modules/,
-          loader: "ts-loader",
+          loader: 'ts-loader'
         },
         {
           test: [/\.s[ac]ss$/i, /\.s{0,1}css$/i],
           use: [
             // Creates `style` nodes from JS strings
-            "style-loader",
+            'style-loader',
             // Translates CSS into CommonJS
-            "css-loader",
+            'css-loader',
             // Compiles Sass to CSS
-            "sass-loader",
-          ],
-        },
-      ],
+            'sass-loader'
+          ]
+        }
+      ]
     },
     resolve: {
-      extensions: [".jsx", ".tsx", ".js", ".ts"],
+      extensions: ['.jsx', '.tsx', '.js', '.ts']
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: "./index.html",
+        template: './index.html',
         // favicon: "./images/..",
         inject: 'head'
       }),
       new webpack.DefinePlugin({
-        "process.env": JSON.stringify(process.env),
+        'process.env.API_PATH': JSON.stringify(process.env.API_PATH)
       })
-    ],
-  };
-};
+    ]
+  }
+}

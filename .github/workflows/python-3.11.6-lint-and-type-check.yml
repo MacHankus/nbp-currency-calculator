@@ -1,0 +1,31 @@
+name: Reusable python linting and type check
+
+on:
+  workflow_call:
+    inputs:
+      APP_NAME:
+        required: true
+        type: string
+
+jobs:
+  python-type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.6' 
+      - name: Install packages
+        run: >
+          cd apps/${{ inputs.APP_NAME }} &&
+          pip install poetry &&
+          poetry install
+      - name: Lint
+        run: >
+          cd apps/${{ inputs.APP_NAME }} &&
+          poetry run ruff check src tests
+      - name: Type check
+        run: >
+          cd apps/${{ inputs.APP_NAME }} &&
+          poetry run mypy src
+

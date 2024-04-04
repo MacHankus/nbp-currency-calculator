@@ -18,5 +18,4 @@ session_factory = sessionmaker(engine)
 
 
 def get_session() -> Generator[Session, None, None]:
-    with session_factory() as session:
-        yield session
+    return session_factory()

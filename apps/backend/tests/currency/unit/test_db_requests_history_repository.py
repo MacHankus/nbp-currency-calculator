@@ -1,8 +1,8 @@
 from datetime import datetime
 from unittest.mock import MagicMock
 
-from modules.currency.adapters.repositories.requests_history_repository.db_requests_history_repository import \
-    DBRequestsHistoryRepository
+from modules.currency.adapters.repositories.exchange_history_repository.db_exchange_history_repository import \
+    DBExchangeHistoryRepository
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from tests.helpers.random import get_random_float
@@ -11,13 +11,14 @@ from tests.helpers.random import get_random_float
 def test_should_accept_argument():
     # Arrange 
     mock_session = MagicMock()
-    repository = DBRequestsHistoryRepository(db_session=mock_session)
+    repository = DBExchangeHistoryRepository(db_session=mock_session)
     new_request = NewRequestEntity(
         currency_from=CurrencyEnum.PLN,
         currency_to=CurrencyEnum.PLN,
         request_date=datetime.now(),
-        exchange_rate=get_random_float(),
-        is_error=False
+        amount=get_random_float(),
+        is_error=False,
+        result=get_random_float(),
 
     )
     
@@ -32,13 +33,14 @@ def test_should_call_session():
     mock_session_commit = MagicMock()
     mock_session.add = mock_session_add
     mock_session.commit = mock_session_commit
-    repository = DBRequestsHistoryRepository(db_session=mock_session)
+    repository = DBExchangeHistoryRepository(db_session=mock_session)
     new_request = NewRequestEntity(
         currency_from=CurrencyEnum.PLN,
         currency_to=CurrencyEnum.PLN,
         request_date=datetime.now(),
-        exchange_rate=get_random_float(),
-        is_error=False
+        amount=get_random_float(),
+        is_error=False,
+        result=get_random_float(),
     )
     
     # Act

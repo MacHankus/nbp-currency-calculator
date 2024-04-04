@@ -3,7 +3,9 @@ from unittest.mock import Mock
 from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
-from modules.currency.core.entities.currency_to_calculate_entity import CurrencyToCalculateEntity
+from modules.currency.core.entities.currency_to_calculate_entity import (
+    CurrencyToCalculateEntity,
+)
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from modules.currency.core.services.exchange_service import ExchangeService
 
@@ -29,7 +31,7 @@ def test_should_get_proper_rate(container: DeclarativeContainer):
     )
 
     # Act
-    with container.requests_history_repository.override(
+    with container.exchange_history_repository.override(
         providers.Factory(lambda: mock_requests_history_repository)
     ), container.exchange_rate_repository.override(
         providers.Factory(lambda: mock_exchange_rate_repository)
@@ -37,6 +39,26 @@ def test_should_get_proper_rate(container: DeclarativeContainer):
         service: ExchangeService = container.exchange_service()
         returned_value = service.get_exchange(to_calculate)
 
-    # Assert 
+    # Assert
 
     assert returned_value == final_eur
+
+
+def test_should_call_exchange_history_repository(container: DeclarativeContainer):
+    # Arrange
+    mock_exchange_history_repository = Mock()
+    mock_exchange_history_repository.get.return_value = []
+    mock_exchange_rate_repository = Mock()
+
+    # Act
+    with container.exchange_history_repository.override(
+        providers.Factory(lambda: mock_exchange_history_repository)
+    ), container.exchange_rate_repository.override(
+        providers.Factory(lambda: mock_exchange_rate_repository)
+    ):
+        service: ExchangeService = container.exchange_service()
+        service.get_history()
+
+    # Assert
+
+    mock_exchange_history_repository.get.assert_called_once()

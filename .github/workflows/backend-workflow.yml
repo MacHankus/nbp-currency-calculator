@@ -3,7 +3,6 @@ name: Backend workflow
 on:
   pull_request:
     branches: [ "master" ]
-  push:
     paths:
       - apps/backend/**
       - .github/workflows/python*

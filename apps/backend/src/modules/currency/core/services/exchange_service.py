@@ -7,9 +7,9 @@ from modules.currency.core.entities.currency_to_calculate_entity import Currency
 from modules.currency.core.entities.exchange_history_entity import ExchangeHistoryEntity
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
+from modules.currency.core.ports.exchange_history_repository_port import ExchangeHistoryRepositoryPort
 from modules.currency.core.ports.exchange_port import ExchangePort
 from modules.currency.core.ports.exchange_rate_repository_port import ExchangeRateRepositoryPort
-from modules.currency.core.ports.exchange_history_repository_port import ExchangeHistoryRepositoryPort
 from shared.exceptions.server_failed_request_error import ServerFailedRequestError
 from shared.exceptions.server_unavailable_error import ServerUnavailableError
 

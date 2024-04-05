@@ -1,4 +1,5 @@
 from typing import List
+
 from dependency_injector.wiring import Provide
 from dependency_injector.wiring import inject
 from sqlalchemy.orm import Session
@@ -6,10 +7,7 @@ from sqlalchemy.orm import Session
 from db.exchange_history.models.exchange_history import ExchangeHistory
 from modules.currency.core.entities.exchange_history_entity import ExchangeHistoryEntity
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
-from modules.currency.core.ports.exchange_history_repository_port import (
-    ExchangeHistoryRepositoryPort,
-)
-from sqlalchemy import select
+from modules.currency.core.ports.exchange_history_repository_port import ExchangeHistoryRepositoryPort
 
 
 class DBExchangeHistoryRepository(ExchangeHistoryRepositoryPort):

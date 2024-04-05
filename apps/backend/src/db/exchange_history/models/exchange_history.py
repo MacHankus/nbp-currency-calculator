@@ -1,5 +1,4 @@
 from datetime import datetime
-from decimal import Decimal
 
 from sqlalchemy import DECIMAL
 from sqlalchemy import Boolean

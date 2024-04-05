@@ -3,9 +3,7 @@ from unittest.mock import Mock
 from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
-from modules.currency.core.entities.currency_to_calculate_entity import (
-    CurrencyToCalculateEntity,
-)
+from modules.currency.core.entities.currency_to_calculate_entity import CurrencyToCalculateEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from modules.currency.core.services.exchange_service import ExchangeService
 

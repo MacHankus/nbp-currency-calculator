@@ -1,13 +1,14 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import List
+from typing import Optional
 
+import pytest
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from db.exchange_history.models import ExchangeHistory
 from modules.currency.core.enums.currency_enum import CurrencyEnum
 from tests.helpers.random import get_random_float
-import pytest
 
 
 def get_exchange_history(session: Session) -> List[ExchangeHistory]:

@@ -1,5 +1,7 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import List
+from typing import Optional
+
 from pydantic import BaseModel
 
 from modules.currency.core.entities.exchange_history_entity import ExchangeHistoryEntity

@@ -1,17 +1,16 @@
 from datetime import datetime
-from typing import Any, Callable, Tuple
+from typing import Callable
 
 import pytest
 from dependency_injector.containers import DeclarativeContainer
 from sqlalchemy.orm import Session
 
 from db.exchange_history.models.exchange_history import ExchangeHistory
-from modules.currency.adapters.repositories.exchange_history_repository.db_exchange_history_repository import DBExchangeHistoryRepository
+from modules.currency.adapters.repositories.exchange_history_repository.db_exchange_history_repository import \
+    DBExchangeHistoryRepository
 from modules.currency.core.entities.new_request_entity import NewRequestEntity
 from modules.currency.core.enums.currency_enum import CurrencyEnum
-from tests.helpers.db_exchange_history import (
-    get_exchange_history,
-)
+from tests.helpers.db_exchange_history import get_exchange_history
 from tests.helpers.db_exchange_history import truncate_exchange_history
 from tests.helpers.random import get_random_float
 

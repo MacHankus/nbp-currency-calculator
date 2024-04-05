@@ -4,7 +4,8 @@ import pytest
 from sqlalchemy.orm import Session
 
 from container import Container
-from db.requests_history.connection import get_session
+from db.exchange_history.connection import get_session
+from helpers.db_exchange_history import create_exchange_history  # noqa
 
 
 @pytest.fixture(scope="session")
@@ -14,5 +15,5 @@ def container():
 
 
 @pytest.fixture(scope="session")
-def requests_history_session() -> Generator[Session, None, None]:
-    yield from get_session()
+def exchange_history_session() -> Generator[Session, None, None]:
+    yield get_session()

@@ -1,5 +1,8 @@
 FROM python:3.11.6-slim
 
+RUN apt-get update 
+RUN apt-get install libpq-dev -y python3-dev
+RUN apt-get install build-essential -y
 RUN pip install --upgrade pip
 RUN pip install poetry
 

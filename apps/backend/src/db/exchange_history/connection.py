@@ -1,5 +1,3 @@
-from typing import Generator
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
@@ -17,6 +15,5 @@ engine = create_engine(
 session_factory = sessionmaker(engine)
 
 
-def get_session() -> Generator[Session, None, None]:
-    with session_factory() as session:
-        yield session
+def get_session() -> Session:
+    return session_factory()

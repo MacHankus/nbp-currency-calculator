@@ -17,5 +17,5 @@ engine = create_engine(
 session_factory = sessionmaker(engine)
 
 
-def get_session() -> Generator[Session, None, None]:
+def get_session() -> Session:
     return session_factory()
